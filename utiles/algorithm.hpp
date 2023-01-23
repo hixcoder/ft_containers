@@ -6,7 +6,7 @@
 /*   By: hboumahd <hboumahd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 10:36:22 by hboumahd          #+#    #+#             */
-/*   Updated: 2023/01/23 12:06:36 by hboumahd         ###   ########.fr       */
+/*   Updated: 2023/01/23 16:46:59 by hboumahd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,105 @@ namespace ft
     template <class T>
     struct is_integral
     {
-        
+        static const bool value = false;
+    };
+    
+    template <>
+    struct is_integral<bool>
+    {
+        static const bool value = true;
+    };
+    template <>
+    struct is_integral<char>
+    {
+        static const bool value = true;
+    };
+    template <>
+    struct is_integral<char16_t>
+    {
+        static const bool value = true;
+    };
+    template <>
+    struct is_integral<char32_t>
+    {
+        static const bool value = true;
+    };
+    template <>
+    struct is_integral<wchar_t>
+    {
+        static const bool value = true;
+    };
+    template <>
+    struct is_integral<signed char>
+    {
+        static const bool value = true;
+    };
+    template <>
+    struct is_integral<short int>
+    {
+        static const bool value = true;
+    };
+    template <>
+    struct is_integral<int>
+    {
+        static const bool value = true;
+    };
+    template <>
+    struct is_integral<long int>
+    {
+        static const bool value = true;
+    };
+
+    template <>
+    struct is_integral<long long int>
+    {
+        static const bool value = true;
+    };
+    template <>
+    struct is_integral<unsigned char>
+    {
+        static const bool value = true;
+    };
+    template <>
+    struct is_integral<unsigned short int>
+    {
+        static const bool value = true;
+    };
+    template <>
+    struct is_integral<unsigned int>
+    {
+        static const bool value = true;
+    };
+    template <>
+    struct is_integral<unsigned long int>
+    {
+        static const bool value = true;
+    };
+    template <>
+    struct is_integral<unsigned long long int>
+    {
+        static const bool value = true;
+    };
+  
+}
+
+//  ==> std::pair
+namespace ft
+{
+    template <class T1, class T2>
+    struct pair
+    {
+        private:
+            T1 first;
+            T2 second;
+        public:
+            pair(T1 t1, T2 t2)
+            {
+                this->first = t1;
+                this->second = t2;
+            }
+            
+            T1 getFirst() const{return this->first;}
+            T2 getSecond() const{return this->second;}
     };
 }

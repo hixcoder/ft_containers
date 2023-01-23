@@ -6,11 +6,11 @@
 /*   By: hboumahd <hboumahd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 10:53:53 by hboumahd          #+#    #+#             */
-/*   Updated: 2023/01/23 12:13:49 by hboumahd         ###   ########.fr       */
+/*   Updated: 2023/01/23 16:39:14 by hboumahd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_containers.hpp"
+#include "tests.hpp"
 
 // ==> std::equal
 void equalTest()
@@ -60,14 +60,24 @@ void lexicographical_compareTest()
 void is_integralTest()
 {
     // std::integral results
-    std::cout << "is_integral:" << std::endl;
+    std::cout << "==> std::is_integral:" << std::endl;
     std::cout << "char: " << std::is_integral<char>::value << std::endl;
     std::cout << "int: " << std::is_integral<int>::value << std::endl;
-    std::cout << "float: " << std::is_integral<float>::value << std::endl;
+    std::cout << "float: " << std::is_integral<float>::value << "\n\n";
 
     // ft::integral results
-    // std::cout << "is_integral:" << std::endl;
-    // std::cout << "char: " << ft::is_integral<char>::value << std::endl;
-    // std::cout << "int: " << ft::is_integral<int>::value << std::endl;
-    // std::cout << "float: " << ft::is_integral<float>::value << std::endl;
+    std::cout << "==> ft::is_integral:" << std::endl;
+    std::cout << "char: " << ft::is_integral<char>::value << std::endl;
+    std::cout << "int: " << ft::is_integral<int>::value << std::endl;
+    std::cout << "float: " << ft::is_integral<float>::value << std::endl;
+}
+
+// ==> std::pair
+void pairTest()
+{
+    std::pair<int, std::string> myPair;
+    myPair.first = 10;
+    myPair.second = "Hello, World!";
+    std::cout << "The first element of myPair is: " << myPair.first << std::endl;
+    std::cout << "The second element of myPair is: " << myPair.second << std::endl;
 }
