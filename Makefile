@@ -6,7 +6,7 @@
 #    By: hboumahd <hboumahd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/22 17:15:58 by hboumahd          #+#    #+#              #
-#    Updated: 2023/01/22 17:16:20 by hboumahd         ###   ########.fr        #
+#    Updated: 2023/01/23 11:15:08 by hboumahd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,11 +15,11 @@ NAME = ft_containers
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 CPP = c++
 
-SRCS =	main.cpp  
+SRCS =	main.cpp tests/algorithm_tests.cpp
 
 SRCOBJ = ${SRCS:.cpp=.o}
 
-Include = MutantStack.hpp
+Include = tests/tests.hpp utiles/algorithm.hpp  utiles/iterators.hpp
 
 # -g for the debugger
 %.o:%.cpp ${Include}

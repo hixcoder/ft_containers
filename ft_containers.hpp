@@ -1,22 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   ft_containers.hpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hboumahd <hboumahd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/22 17:04:17 by hboumahd          #+#    #+#             */
-/*   Updated: 2023/01/23 12:18:10 by hboumahd         ###   ########.fr       */
+/*   Created: 2023/01/23 10:54:53 by hboumahd          #+#    #+#             */
+/*   Updated: 2023/01/23 11:13:32 by hboumahd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_containers.hpp"
-
-int main()
-{
-    // tests
-    // equalTest();
-    // lexicographical_compareTest();
-    is_integralTest();
-}
-
+#pragma once
+# include <vector>
+# include "utiles/algorithm.hpp"
+# include "utiles/iterators.hpp"
+# include "tests/tests.hpp"
