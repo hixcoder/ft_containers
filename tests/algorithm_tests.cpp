@@ -6,7 +6,7 @@
 /*   By: hboumahd <hboumahd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 10:53:53 by hboumahd          #+#    #+#             */
-/*   Updated: 2023/01/23 16:39:14 by hboumahd         ###   ########.fr       */
+/*   Updated: 2023/01/24 12:01:34 by hboumahd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,64 @@ void is_integralTest()
 // ==> std::pair
 void pairTest()
 {
-    std::pair<int, std::string> myPair;
-    myPair.first = 10;
-    myPair.second = "Hello, World!";
-    std::cout << "The first element of myPair is: " << myPair.first << std::endl;
-    std::cout << "The second element of myPair is: " << myPair.second << std::endl;
+    // this is the std::pair
+    std::pair<int, std::string> stdpair1;
+    std::pair<int, std::string> stdpair2;
+    stdpair1.first = 10;
+    stdpair1.second = "Hello, World!";
+    stdpair2.first = 25;
+    stdpair2.second = "Hello, man!";
+    
+    std::cout << "The first element of stdpair1 is: " << stdpair1.first << std::endl;
+    std::cout << "The second element of stdpair1 is: " << stdpair1.second << std::endl;
+    std::cout << "The first element of stdpair2 is: " << stdpair2.first << std::endl;
+    std::cout << "The second element of stdpair2 is: " << stdpair2.second << "\n\n";
+    stdpair1.swap(stdpair2);
+    std::cout << "The first element of stdpair1 is: " << stdpair1.first << std::endl;
+    std::cout << "The second element of stdpair1 is: " << stdpair1.second << std::endl;
+    std::cout << "The first element of stdpair2 is: " << stdpair2.first << std::endl;
+    std::cout << "The second element of stdpair2 is: " << stdpair2.second << "\n-----------------\n";
+
+    // this is the ft::pair
+    ft::pair<int, std::string> ftpair1;
+    ft::pair<int, std::string> ftpair2;
+    ftpair1.first = 10;
+    ftpair1.second = "Hello, World!";
+    ftpair2.first = 25;
+    ftpair2.second = "Hello, man!";
+    
+    std::cout << "The first element of ftpair1 is: " << ftpair1.first << std::endl;
+    std::cout << "The second element of ftpair1 is: " << ftpair1.second << std::endl;
+    std::cout << "The first element of ftpair2 is: " << ftpair2.first << std::endl;
+    std::cout << "The second element of ftpair2 is: " << ftpair2.second << "\n\n";
+    ftpair1.swap(ftpair2);
+    std::cout << "The first element of ftpair1 is: " << ftpair1.first << std::endl;
+    std::cout << "The second element of ftpair1 is: " << ftpair1.second << std::endl;
+    std::cout << "The first element of ftpair2 is: " << ftpair2.first << std::endl;
+    std::cout << "The second element of ftpair2 is: " << ftpair2.second << std::endl;
+}
+
+// ==> std::pair
+void make_pairTest()
+{
+    // this is the std::pair
+    std::pair <int,int> std_foo;
+    std::pair <double, char> std_bar;
+    
+    std_foo = std::make_pair (10,20);
+    std_bar = std::make_pair (10.5,'A'); 
+    
+    std::cout << "std_foo: " << std_foo.first << ", " << std_foo.second << '\n';
+    std::cout << "std_bar: " << std_bar.first << ", " << std_bar.second << '\n';
+    std::cout << "\n-----------------\n";
+
+    // this is the ft::pair
+    ft::pair <int,int> ft_foo;
+    ft::pair <double, char> ft_bar;
+    
+    ft_foo = ft::make_pair (10,20);
+    ft_bar = ft::make_pair (10.5,'A'); 
+    
+    std::cout << "ft_foo: " << ft_foo.first << ", " << ft_foo.second << '\n';
+    std::cout << "ft_bar: " << ft_bar.first << ", " << ft_bar.second << '\n';
 }

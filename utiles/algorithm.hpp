@@ -6,7 +6,7 @@
 /*   By: hboumahd <hboumahd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 10:36:22 by hboumahd          #+#    #+#             */
-/*   Updated: 2023/01/23 16:46:59 by hboumahd         ###   ########.fr       */
+/*   Updated: 2023/01/24 11:53:44 by hboumahd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,17 +144,49 @@ namespace ft
     template <class T1, class T2>
     struct pair
     {
-        private:
+        public:
             T1 first;
             T2 second;
         public:
+            pair(){}
             pair(T1 t1, T2 t2)
             {
                 this->first = t1;
                 this->second = t2;
             }
-            
-            T1 getFirst() const{return this->first;}
-            T2 getSecond() const{return this->second;}
+            pair(pair const &other)
+            {
+                this->first = other.first;
+                this->second = other.second;
+            }
+            pair& operator=(pair const& other) 
+            {
+                first = other.first;
+                second = other.second;
+                return *this;
+            }
+            ~pair(){}
+
+            void swap (pair &p2) 
+            {
+                pair tmp;
+                
+                tmp.first = this->first;
+                tmp.second = this->second;
+                this->first = p2.first;
+                this->second = p2.second;
+                p2.first = tmp.first;
+                p2.second = tmp.second;
+            }
     };
+}
+
+//  ==> std::pair
+namespace ft
+{
+   template <class T1,class T2>
+   pair<T1,T2> make_pair (T1 x, T2 y)
+   {
+      return ( pair<T1,T2>(x,y) );
+   }
 }
