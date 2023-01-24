@@ -6,7 +6,7 @@
 /*   By: hboumahd <hboumahd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 10:36:22 by hboumahd          #+#    #+#             */
-/*   Updated: 2023/01/24 11:53:44 by hboumahd         ###   ########.fr       */
+/*   Updated: 2023/01/24 14:20:55 by hboumahd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,4 +189,17 @@ namespace ft
    {
       return ( pair<T1,T2>(x,y) );
    }
+}
+
+//  ==> std::enable_if
+namespace ft
+{
+    template<bool Cond, class T = void> 
+    struct enable_if {};
+    
+    template<class T> 
+    struct enable_if<true, T> 
+    {
+        typedef T type;
+    };
 }
