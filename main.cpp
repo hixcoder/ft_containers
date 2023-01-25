@@ -6,7 +6,7 @@
 /*   By: hboumahd <hboumahd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 17:04:17 by hboumahd          #+#    #+#             */
-/*   Updated: 2023/01/25 09:58:17 by hboumahd         ###   ########.fr       */
+/*   Updated: 2023/01/25 12:27:10 by hboumahd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,18 @@
 
 int main()
 {
-    // algorithm functions tests:
+    // ==> algorithm tests:
     // equalTest();
     // lexicographical_compareTest();
     // is_integralTest();
     // pairTest();
     // make_pairTest();
-    enable_ifTest();
+    // enable_ifTest();
+    
+    // ==> iterators tests:
+    // iterator_traitsTest();
+
+    // stack tests:
+    stackTest();
 }
 
