@@ -6,7 +6,7 @@
 /*   By: hboumahd <hboumahd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 17:04:17 by hboumahd          #+#    #+#             */
-/*   Updated: 2023/01/24 12:01:00 by hboumahd         ###   ########.fr       */
+/*   Updated: 2023/01/25 09:58:17 by hboumahd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int main()
     // lexicographical_compareTest();
     // is_integralTest();
     // pairTest();
-    make_pairTest();
+    // make_pairTest();
+    enable_ifTest();
 }
 

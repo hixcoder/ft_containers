@@ -6,7 +6,7 @@
 /*   By: hboumahd <hboumahd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 10:53:53 by hboumahd          #+#    #+#             */
-/*   Updated: 2023/01/24 12:01:34 by hboumahd         ###   ########.fr       */
+/*   Updated: 2023/01/25 10:19:34 by hboumahd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,4 +135,31 @@ void make_pairTest()
     
     std::cout << "ft_foo: " << ft_foo.first << ", " << ft_foo.second << '\n';
     std::cout << "ft_bar: " << ft_bar.first << ", " << ft_bar.second << '\n';
+}
+
+// ==> std::enable_if
+
+// the return type bool is valid if T is an integral type
+
+// std function
+template <class T>
+typename std::enable_if<std::is_integral<T>::value, bool>::type is_odd (T t1) 
+{
+    return bool(t1%2);
+}
+
+// ft function
+template <class T>
+typename ft::enable_if<ft::is_integral<T>::value, bool>::type is_odd2 (T t1) 
+{
+    return bool(t1%2);
+}
+void enable_ifTest()
+{
+    // code does not compile if type of n is not integral
+    int n = 1;    
+    
+    std::cout << "n is odd std: " << is_odd(n) << std::endl;
+
+    std::cout << "n is odd ft: " << is_odd2(n) << std::endl;
 }
