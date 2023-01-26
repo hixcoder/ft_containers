@@ -6,7 +6,7 @@
 /*   By: hboumahd <hboumahd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 11:12:45 by hboumahd          #+#    #+#             */
-/*   Updated: 2023/01/25 14:32:59 by hboumahd         ###   ########.fr       */
+/*   Updated: 2023/01/26 09:40:41 by hboumahd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,3 +33,6 @@ void iterator_traitsTest();
 
 // stack tests
 void stackTest();
+
+// vector tests
+void vectorTest();

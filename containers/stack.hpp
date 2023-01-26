@@ -6,7 +6,7 @@
 /*   By: hboumahd <hboumahd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:26:57 by hboumahd          #+#    #+#             */
-/*   Updated: 2023/01/25 16:39:37 by hboumahd         ###   ########.fr       */
+/*   Updated: 2023/01/26 09:27:35 by hboumahd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,80 +18,68 @@
 
 namespace ft
 {
-    template <class dataType, class containerType = std::vector<dataType> >
+    template <class dataType, class Container = std::vector<dataType> >
     class stack
     {
     public:
-        typedef typename containerType::value_type      valueType;
-        typedef typename containerType::reference       reference;
-        typedef typename containerType::const_reference const_reference;
-        typedef typename containerType::size_type       size_type;
+        typedef Container                                   container_type;
+        typedef typename container_type::value_type         value_type;
+        typedef typename container_type::const_reference    const_reference;
+        typedef typename container_type::reference          reference;
+        typedef typename container_type::size_type          size_type;
         
     protected:
-        containerType c;
+        container_type c;
 
     public:
         stack(): c() {}
         stack(const stack& other) : c(other.c) {}
-        explicit stack(const containerType& __c) : c(__c) {}
+        explicit stack(const container_type& __c) : c(__c) {}
         stack& operator=(const stack& other) 
         {
             c = other.c; 
             return *this;
         }
 
-
-        bool empty()     const      {return c.empty();}
+        bool empty() const          {return c.empty();}
         size_type size() const      {return c.size();}
         reference top()             {return c.back();}
         const_reference top() const {return c.back();}
-
-        void push(const valueType& __v) 
+        void push(const value_type& __v)
         {
             c.push_back(__v);
         }
-        
-        void pop() 
+        void pop()
         {
             c.pop_back();
         }
 
-        void swap(stack& __s)
-        {
-            swap(c, __s.c);
-        }
-
-        friend bool operator==(const stack<dataType, containerType>& stack1, const stack<dataType, containerType>& stack2)
+        friend bool operator==(const stack<dataType, container_type>& stack1, const stack<dataType, container_type>& stack2)
         {
             return (stack1.c == stack2.c);
         }
 
-        friend bool operator<(const stack<dataType, containerType>& stack1, const stack<dataType, containerType>& stack2)
+        friend bool operator!=(const stack<dataType, container_type>& stack1, const stack<dataType, container_type>& stack2)
+        {
+            return (stack1.c != stack2.c);
+        }
+
+        friend bool operator<(const stack<dataType, container_type>& stack1, const stack<dataType, container_type>& stack2)
         {
             return (stack1.c < stack2.c);
         }
         
-        friend bool operator!=(const stack<dataType, containerType>& stack1, const stack<dataType, containerType>& stack2)
-        {
-            return (stack1.c != stack2.c);
-        }
-        
-        friend bool operator>(const stack<dataType, containerType>& stack1, const stack<dataType, containerType>& stack2)
-        {
-            return (stack1.c > stack2.c);
-        }
-        
-        friend bool operator>(const stack<dataType, containerType>& stack1, const stack<dataType, containerType>& stack2)
+        friend bool operator>(const stack<dataType, container_type>& stack1, const stack<dataType, container_type>& stack2)
         {
             return (stack1.c > stack2.c);
         }
 
-        friend bool operator>=(const stack<dataType, containerType>& stack1, const stack<dataType, containerType>& stack2)
+        friend bool operator>=(const stack<dataType, container_type>& stack1, const stack<dataType, container_type>& stack2)
         {
             return (stack1.c >= stack2.c);
         }
 
-        friend bool operator<=(const stack<dataType, containerType>& stack1, const stack<dataType, containerType>& stack2)
+        friend bool operator<=(const stack<dataType, container_type>& stack1, const stack<dataType, container_type>& stack2)
         {
             return (stack1.c <= stack2.c);
         }
