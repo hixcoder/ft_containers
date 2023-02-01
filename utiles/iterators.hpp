@@ -6,7 +6,7 @@
 /*   By: hboumahd <hboumahd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 10:49:57 by hboumahd          #+#    #+#             */
-/*   Updated: 2023/01/31 14:52:30 by hboumahd         ###   ########.fr       */
+/*   Updated: 2023/02/01 12:19:30 by hboumahd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,21 +73,71 @@ namespace ft
         typedef typename iterator_traits<Iterator>::reference       reference;
         typedef typename iterator_traits<Iterator>::pointer         pointer;
 
-        constexpr reverse_iterator();
-        constexpr explicit reverse_iterator(Iterator x);
-        template <class U> constexpr reverse_iterator(const reverse_iterator<U>& u);
-        template <class U> constexpr reverse_iterator& operator=(const reverse_iterator<U>& u);
-        constexpr Iterator base() const;
-        constexpr reference operator*() const;
-        constexpr pointer   operator->() const;
-        constexpr reverse_iterator& operator++();
-        constexpr reverse_iterator  operator++(int);
-        constexpr reverse_iterator& operator--();
-        constexpr reverse_iterator  operator--(int);
-        constexpr reverse_iterator  operator+ (difference_type n) const;
-        constexpr reverse_iterator& operator+=(difference_type n);
-        constexpr reverse_iterator  operator- (difference_type n) const;
-        constexpr reverse_iterator& operator-=(difference_type n);
-        constexpr reference         operator[](difference_type n) const;
+    public:
+        constexpr reverse_iterator(): current(){}
+        constexpr explicit reverse_iterator(Iterator x) : current(x){}
+        template <class U> constexpr reverse_iterator(const reverse_iterator<U>& u): current(u.base()){}
+        template <class U> reverse_iterator& operator=(const reverse_iterator<U>& u)
+        {
+            this->current = u.base();
+            return *this;
+        }
+        
+        constexpr Iterator base() const 
+        {
+            return this->current;
+        };
+        reference operator*() const 
+        {
+            return *(this->current - 1);
+        };
+        pointer   operator->() const
+        {
+            return &(operator*());
+        };
+        reverse_iterator& operator++()
+        {
+            --this->current;
+            return *this;
+        };
+        reverse_iterator  operator++(int)
+        {
+            reverse_iterator tmp(*this);
+            --this->current;
+            return (tmp);
+        };
+        reverse_iterator& operator--()
+        {
+            ++this->current;
+            return *this;
+        };
+        reverse_iterator  operator--(int)
+        {
+            reverse_iterator tmp(*this);
+            ++this->current;
+            return (tmp);
+        };
+        reverse_iterator  operator+ (difference_type n) const
+        {
+            return reverse_iterator(this->current - n);
+        };
+        reverse_iterator& operator+=(difference_type n)
+        {
+            this->current -= n;
+            return *this;
+        }
+        reverse_iterator  operator- (difference_type n) const
+        {
+            return reverse_iterator(this->current + n);
+        };
+        reverse_iterator& operator-=(difference_type n)
+        {
+            this->current += n;
+            return *this;
+        }
+        reference         operator[](difference_type n) const
+        {
+            return *(*this + n);
+        }
     };
 }
