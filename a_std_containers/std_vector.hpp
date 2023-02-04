@@ -6,14 +6,15 @@
 /*   By: hboumahd <hboumahd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 12:26:19 by hboumahd          #+#    #+#             */
-/*   Updated: 2023/02/01 13:40:32 by hboumahd         ###   ########.fr       */
+/*   Updated: 2023/02/04 14:34:00 by hboumahd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
     //===================== vector synopsis =====================
 #include <iostream>
-
-namespace std
+#include <string>
+#include <memory>
+namespace gt
 {
 
 template <class T, class Allocator = allocator<T> >

@@ -6,13 +6,15 @@
 /*   By: hboumahd <hboumahd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 12:25:31 by hboumahd          #+#    #+#             */
-/*   Updated: 2023/02/01 11:33:44 by hboumahd         ###   ########.fr       */
+/*   Updated: 2023/02/04 14:33:44 by hboumahd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 //===================== iterator synopsis =====================
-
-namespace std
+#include <iostream>
+#include <string>
+#include <memory>
+namespace gt
 {
 
 template<class Iterator>
