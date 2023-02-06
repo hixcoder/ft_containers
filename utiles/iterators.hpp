@@ -6,7 +6,7 @@
 /*   By: hboumahd <hboumahd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 10:49:57 by hboumahd          #+#    #+#             */
-/*   Updated: 2023/02/04 11:45:26 by hboumahd         ###   ########.fr       */
+/*   Updated: 2023/02/06 13:18:31 by hboumahd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,9 +89,9 @@ namespace ft
 
     public:
         // class constructors 
-        constexpr reverse_iterator(): current(){}
-        constexpr explicit reverse_iterator(Iterator x) : current(x){}
-        template <class U> constexpr reverse_iterator(const reverse_iterator<U>& u): current(u.base()){}
+        reverse_iterator(): current(){}
+        explicit reverse_iterator(Iterator x) : current(x){}
+        template <class U> reverse_iterator(const reverse_iterator<U>& u): current(u.base()){}
         template <class U> reverse_iterator& operator=(const reverse_iterator<U>& u)
         {
             this->current = u.base();
@@ -99,7 +99,7 @@ namespace ft
         }
 
         // memeber functions
-        constexpr Iterator base() const 
+        Iterator base() const 
         {
             return this->current;
         };

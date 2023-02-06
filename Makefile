@@ -6,7 +6,7 @@
 #    By: hboumahd <hboumahd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/22 17:15:58 by hboumahd          #+#    #+#              #
-#    Updated: 2023/01/25 12:27:41 by hboumahd         ###   ########.fr        #
+#    Updated: 2023/02/06 13:19:12 by hboumahd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME = ft_containers
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 CPP = c++
 
-SRCS =	main.cpp tests/algorithm_tests.cpp tests/stack_tests.cpp
+SRCS =	main.cpp tests/algorithm_tests.cpp tests/stack_tests.cpp tests/vector_tests.cpp
 
 SRCOBJ = ${SRCS:.cpp=.o}
 
