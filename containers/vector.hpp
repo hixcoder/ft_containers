@@ -6,7 +6,7 @@
 /*   By: hboumahd <hboumahd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 09:29:18 by hboumahd          #+#    #+#             */
-/*   Updated: 2023/02/09 13:48:08 by hboumahd         ###   ########.fr       */
+/*   Updated: 2023/02/09 16:34:17 by hboumahd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,9 +115,47 @@ namespace ft
             }
             
             // element access:
-            reference operator[] (size_type n){return m_ptr[n];}
+            reference operator[] (size_type n) {return m_ptr[n];}
             const_reference operator[] (size_type n) const {return m_ptr[n];}
-            reference at (size_type n){}
-            const_reference at (size_type n) const;
+            reference at (size_type n)
+            {
+                if (n >= m_size)
+                    throw (std::out_of_range("out_of_range ==> ft::vector::at"));
+                else
+                    return m_ptr[n];
+            }
+            const_reference at (size_type n) const
+            {
+                if (n >= m_size)
+                    throw (std::out_of_range("out_of_range ==> ft::vector::at"));
+                else
+                    return m_ptr[n];
+            }
+            reference front(){return m_ptr[0];}
+            const_reference front() const{return m_ptr[0];}
+            reference back(){return m_ptr[m_size - 1];}
+            const_reference back() const{return m_ptr[m_size - 1];}
+            value_type* data() {return m_ptr;}
+            const value_type* data() const {return m_ptr;}
+
+            // modifiers:
+            // template <class InputIterator>  void assign (InputIterator first, InputIterator last)
+            // {
+                
+            // }
+            void assign (size_type n, const value_type& val)
+            {
+                pointer new_ptr;
+                
+                if (n >= m_capacity)
+                    new_ptr = m_alloc.allocate(n);
+                else
+                    new_ptr = m_alloc.allocate(m_capacity);
+                for (size_type i = 0; i < n; i++)
+                    m_alloc.construct(&new_ptr[i], val);
+                m_alloc.deallocate(m_ptr, m_capacity);
+                m_ptr = new_ptr;
+                m_size = n;
+            }
     };
 }
