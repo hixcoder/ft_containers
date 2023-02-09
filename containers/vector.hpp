@@ -6,7 +6,7 @@
 /*   By: hboumahd <hboumahd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 09:29:18 by hboumahd          #+#    #+#             */
-/*   Updated: 2023/02/06 15:48:30 by hboumahd         ###   ########.fr       */
+/*   Updated: 2023/02/09 13:48:08 by hboumahd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,12 +75,8 @@ namespace ft
             // iterators:
             iterator begin() {return iterator(m_ptr);}
             iterator end() {return iterator(m_ptr + m_size);}
-            const_iterator cbegin() const {return const_iterator(m_ptr);}
-            const_iterator cend() const {return const_iterator(m_ptr + m_size);}
             reverse_iterator rbegin() {return end();}
             reverse_iterator rend() {return begin();}
-            const_reverse_iterator crbegin() const {return cend();}
-            const_reverse_iterator crend() const {return cbegin();}
 
             // capacity:
             size_type size() const {return m_size;}
@@ -101,7 +97,6 @@ namespace ft
                 }
                 m_size = n;
             }
-            
             size_type capacity() const {return m_capacity;}
             bool empty() const {return (m_ptr) ? true: false;}
             void reserve (size_type n)
@@ -113,10 +108,16 @@ namespace ft
                     pointer new_ptr = m_alloc.allocate(n);
                     for (size_type i = 0; i < m_size; i++)
                         m_alloc.construct(&new_ptr[i], m_ptr[i]);
-                    m_alloc.dealloacate(m_ptr, m_capacity);
+                    m_alloc.deallocate(m_ptr, m_capacity);
                     m_ptr = new_ptr;
                     m_capacity = n;
                 }
             }
+            
+            // element access:
+            reference operator[] (size_type n){return m_ptr[n];}
+            const_reference operator[] (size_type n) const {return m_ptr[n];}
+            reference at (size_type n){}
+            const_reference at (size_type n) const;
     };
 }
