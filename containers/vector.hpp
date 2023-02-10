@@ -6,7 +6,7 @@
 /*   By: hboumahd <hboumahd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 09:29:18 by hboumahd          #+#    #+#             */
-/*   Updated: 2023/02/09 16:34:17 by hboumahd         ###   ########.fr       */
+/*   Updated: 2023/02/10 11:25:08 by hboumahd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,21 @@ namespace ft
                     i++;
                 }
             }
-            vector (const vector& x);
+            vector (const vector& x)
+            {
+                *this = x;
+            }
             ~vector();
-            vector& operator= (const vector& x);
+            vector& operator= (const vector& x)
+            {
+                m_alloc = x.m_alloc;
+                m_capacity = x.m_capacity;
+                m_size = x.m_size;
+                m_ptr = m_alloc.allocate(m_capacity);
+                for (size_type i = 0; i < m_size; i++)
+                    m_alloc.construct(&m_ptr[i], x.m_ptr[i]);
+                return (*this);
+            }
 
             // iterators:
             iterator begin() {return iterator(m_ptr);}
