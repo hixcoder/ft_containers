@@ -6,7 +6,7 @@
 /*   By: hboumahd <hboumahd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:29:28 by hboumahd          #+#    #+#             */
-/*   Updated: 2023/02/10 11:25:28 by hboumahd         ###   ########.fr       */
+/*   Updated: 2023/02/10 16:30:46 by hboumahd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,12 @@ void vectorTest()
   v.push_back(50);
   v.push_back(550);
   v.push_back(501);
+  
+  std::cout << "capacity - size: " << v.capacity() << " - " << v.size()<< "\n";
+  v.reserve(6);
+  std::cout << "capacity - size: " << v.capacity() << " - " << v.size() << "\n";
   v = v1;
+  std::cout << "capacity2 - size: " << v.capacity()  << " - " << v.size()<< "\n";
   for (size_t i = 0; i < v.size(); i++)
     std::cout << "v["<< i << "]= "<< v[i] << "\n"; 
   

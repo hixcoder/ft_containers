@@ -6,7 +6,7 @@
 /*   By: hboumahd <hboumahd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 09:29:18 by hboumahd          #+#    #+#             */
-/*   Updated: 2023/02/10 11:25:08 by hboumahd         ###   ########.fr       */
+/*   Updated: 2023/02/10 16:39:29 by hboumahd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ namespace ft
                 for (size_type i = 0; i < n; i++)
                     m_alloc.construct(&m_ptr[i], val);
             }
-            template <class  InputIterator> vector (InputIterator first, InputIterator last, const allocator_type& alloc = allocator_type())
+            template <class  InputIterator> vector(InputIterator first, InputIterator last, const allocator_type& alloc = allocator_type())
             {
                 size_type n = std::distance(first,last);
                 m_size = n;
@@ -68,20 +68,23 @@ namespace ft
                     i++;
                 }
             }
-            vector (const vector& x)
+            vector(const vector& x)
             {
                 *this = x;
             }
             ~vector();
-            vector& operator= (const vector& x)
+            vector& operator=(const vector& x)
             {
+                if (this == &x)
+                    return *this;
                 m_alloc = x.m_alloc;
                 m_capacity = x.m_capacity;
                 m_size = x.m_size;
+                m_alloc.deallocate(m_ptr);
                 m_ptr = m_alloc.allocate(m_capacity);
                 for (size_type i = 0; i < m_size; i++)
                     m_alloc.construct(&m_ptr[i], x.m_ptr[i]);
-                return (*this);
+                return *this;
             }
 
             // iterators:
@@ -151,16 +154,36 @@ namespace ft
             const value_type* data() const {return m_ptr;}
 
             // modifiers:
-            // template <class InputIterator>  void assign (InputIterator first, InputIterator last)
-            // {
+            template <class InputIterator>  void assign (InputIterator first, InputIterator last)
+            {
+                size_type n = std::distance(first,last);
+                pointer new_ptr;
                 
-            // }
+                if (n >= m_capacity)
+                {
+                    new_ptr = m_alloc.allocate(n);
+                    m_capacity = n;
+                }
+                else
+                    new_ptr = m_alloc.allocate(m_capacity);
+                for (size_type i = 0; i < n; i++)
+                {
+                    m_alloc.construct(&new_ptr[i], *first);
+                    first++;
+                }
+                m_alloc.deallocate(m_ptr, m_capacity);
+                m_ptr = new_ptr;
+                m_size = n;
+            }
             void assign (size_type n, const value_type& val)
             {
                 pointer new_ptr;
                 
                 if (n >= m_capacity)
+                {
                     new_ptr = m_alloc.allocate(n);
+                    m_capacity = n;
+                }
                 else
                     new_ptr = m_alloc.allocate(m_capacity);
                 for (size_type i = 0; i < n; i++)
@@ -168,6 +191,36 @@ namespace ft
                 m_alloc.deallocate(m_ptr, m_capacity);
                 m_ptr = new_ptr;
                 m_size = n;
+            }
+            void push_back (const value_type& val)
+            {
+                if (m_capacity == m_size)
+                {
+                    m_capacity += 1;
+                    reserve(m_capacity);
+                }
+                m_alloc.construct(&m_ptr[m_size], val);
+                m_size += 1;
+            }
+            void pop_back()
+            {
+                if (m_size > 0)
+                {
+                    m_alloc.destroy(this->end() - 1);
+                    m_size--;
+                }
+            }
+            iterator insert (iterator position, const value_type& val)
+            {
+                
+            }
+            void insert (iterator position, size_type n, const value_type& val)
+            {
+                
+            }
+            template <class InputIterator> void insert (iterator position, InputIterator first, InputIterator last)
+            {
+                
             }
     };
 }
