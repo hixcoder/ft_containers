@@ -6,7 +6,7 @@
 /*   By: hboumahd <hboumahd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 10:36:22 by hboumahd          #+#    #+#             */
-/*   Updated: 2023/01/25 11:21:01 by hboumahd         ###   ########.fr       */
+/*   Updated: 2023/02/11 17:01:58 by hboumahd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,5 +202,20 @@ namespace ft
     {
         typedef T type;
     };
+
+    // **************| other functions|*******************
+
+    //  ==> std::distance
+    template<class InputIterator>     
+    std::ptrdiff_t distance(InputIterator first, InputIterator last)
+    {
+        std::ptrdiff_t distance = 0;
+        while (first != last) {
+            ++distance;
+            ++first;
+        }
+        return (distance);
+    }
+
 }
 

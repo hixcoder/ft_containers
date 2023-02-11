@@ -6,7 +6,7 @@
 /*   By: hboumahd <hboumahd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 09:29:18 by hboumahd          #+#    #+#             */
-/*   Updated: 2023/02/10 16:39:29 by hboumahd         ###   ########.fr       */
+/*   Updated: 2023/02/11 17:02:15 by hboumahd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ namespace ft
             
             
         public:
-            explicit vector (const allocator_type& alloc = allocator_type()): m_capacity(0), m_size(0), m_alloc(alloc), m_ptr(NULL){}
+            explicit vector (const allocator_type& alloc = allocator_type()): m_size(0), m_capacity(0), m_alloc(alloc), m_ptr(NULL){}
             explicit vector (size_type n, const value_type& val = value_type(), const allocator_type& alloc = allocator_type())
             {
                 m_size = n;
@@ -56,7 +56,7 @@ namespace ft
             }
             template <class  InputIterator> vector(InputIterator first, InputIterator last, const allocator_type& alloc = allocator_type())
             {
-                size_type n = std::distance(first,last);
+                size_type n = distance(first,last);
                 m_size = n;
                 m_capacity = n;
                 m_alloc = alloc;
@@ -72,7 +72,12 @@ namespace ft
             {
                 *this = x;
             }
-            ~vector();
+            ~vector()
+            {
+                clear();
+                if (m_capacity > 0)
+                    m_alloc.deallocate(m_ptr, m_capacity);
+            };
             vector& operator=(const vector& x)
             {
                 if (this == &x)
@@ -156,7 +161,7 @@ namespace ft
             // modifiers:
             template <class InputIterator>  void assign (InputIterator first, InputIterator last)
             {
-                size_type n = std::distance(first,last);
+                size_type n = distance(first,last);
                 pointer new_ptr;
                 
                 if (n >= m_capacity)
@@ -194,13 +199,9 @@ namespace ft
             }
             void push_back (const value_type& val)
             {
-                if (m_capacity == m_size)
-                {
-                    m_capacity += 1;
-                    reserve(m_capacity);
-                }
-                m_alloc.construct(&m_ptr[m_size], val);
-                m_size += 1;
+                reserve(m_size + 1);
+                m_size++;
+                m_alloc.construct(&m_ptr[m_size - 1], val);
             }
             void pop_back()
             {
@@ -212,15 +213,171 @@ namespace ft
             }
             iterator insert (iterator position, const value_type& val)
             {
-                
+                size_type position_indx = distance(begin(), position);
+			    insert(position, 1, val);
+			    return (iterator(&this->_ptr[position_indx]));
             }
             void insert (iterator position, size_type n, const value_type& val)
             {
+                pointer new_ptr;
+                size_type k;
                 
+                m_size += n;
+                if (m_capacity < m_size)
+                    m_capacity += (m_size - m_capacity);
+                new_ptr = m_alloc.allocate(m_capacity);
+                k = -1;
+                for (size_type i = 0; i < m_size; i++)
+                {
+                    if(&m_ptr[i] == position)
+                    {
+                        for (size_type k = 0; k < n; k++)
+                            m_alloc.construct(&new_ptr[++(i - 1)], val);
+                    }
+                    else
+                        m_alloc.construct(&new_ptr[i], m_ptr[++k]);
+                }
+                m_alloc.deallocate(m_ptr);
+                m_ptr = new_ptr;
             }
             template <class InputIterator> void insert (iterator position, InputIterator first, InputIterator last)
             {
+                pointer new_ptr;
+                size_type k;
+                size_type n;
                 
+                n = distance(first, last);
+                m_size += n;
+                if (m_capacity < m_size)
+                    m_capacity += (m_size - m_capacity);
+                new_ptr = m_alloc.allocate(m_capacity);
+                k = -1;
+                for (size_type i = 0; i < m_size; i++)
+                {
+                    if(&m_ptr[i] == position)
+                    {
+                        for (size_type k = 0; k < n; k++)
+                            m_alloc.construct(&new_ptr[++(i - 1)], *(first + k));
+                    }
+                    else
+                        m_alloc.construct(&new_ptr[i], m_ptr[++k]);
+                }
+                m_alloc.deallocate(m_ptr);
+                m_ptr = new_ptr;
             }
+            iterator erase (iterator position)
+            {
+                pointer new_ptr;
+                size_type save;
+                size_type k;
+                
+                new_ptr = m_alloc.allocate(m_capacity);
+                m_size--;
+                k = 0;
+                for (size_type i = 0; i < m_size; i++)
+                {
+                    if(&m_ptr[k] == position)
+                    {
+                        save = k;
+                        k++;
+                    }
+                    m_alloc.construct(&new_ptr[i], m_ptr[k]);
+                    k++;
+                }
+                m_alloc.deallocate(m_ptr);
+                m_ptr = new_ptr;
+                return &new_ptr[save];
+            }
+            iterator erase (iterator first, iterator last)
+            {
+                pointer new_ptr;
+                size_type save;
+                size_type k;
+                size_type n;
+                iterator position;
+                
+                n = distance(first, last);
+                m_size -= n;
+                new_ptr = m_alloc.allocate(m_capacity);
+                k = 0;
+                position = first;
+                for (size_type i = 0; i < m_size; i++)
+                {
+                    if(&m_ptr[k] == position)
+                    {
+                        if (position == first)
+                            save = k;
+                        k++;
+                        position++;
+                    }
+                    m_alloc.construct(&new_ptr[i], m_ptr[k]);
+                    k++;
+                }
+                m_alloc.deallocate(m_ptr);
+                m_ptr = new_ptr;
+                return &new_ptr[save];
+            }
+            void swap (vector& x)
+            {
+                size_type m_size_tmp = x.m_size;
+                size_type m_capacity_tmp = x.m_capacity;
+                allocator_type m_alloc_tmp = x.m_alloc;
+                pointer m_ptr_tmp = x.m_ptr;
+                
+                x.m_size = m_size;
+                x.m_capacity = m_capacity;
+                x.m_alloc = m_alloc;
+                x.m_ptr = m_ptr;
+                
+                m_size = m_size_tmp;
+                m_capacity = m_capacity_tmp;
+                m_alloc = m_alloc_tmp;
+                m_ptr = m_ptr_tmp;
+            }
+            void clear()
+            {
+                for (size_type i = 0; i < size(); i++)
+                    m_alloc.destroy(&m_ptr[i]);
+                m_size = 0;
+            }
+
+            //  Allocator:
+            allocator_type get_allocator() const
+            {
+                allocator_type m_alloc_copy = m_alloc;
+                return m_alloc_copy; 
+            };
     };
+
+    // relational operators:
+    template <class T, class Alloc>  bool operator==(const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs)
+    {
+        return (lhs.size() == rhs.size() && equal(lhs.begin(), lhs.end(), rhs.begin()));
+    }
+    template <class T, class Alloc>  bool operator!=(const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs)
+    {
+        return (!(lhs == rhs));
+    }
+    template <class T, class Alloc>  bool operator<(const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs)
+    {
+        return(lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end()));
+    }
+    template <class T, class Alloc>  bool operator>(const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs)
+    {
+        return ((rhs < lhs));
+    }
+    template <class T, class Alloc>  bool operator<=(const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs)
+    {
+        return (!(lhs < rhs));
+    }
+    template <class T, class Alloc>  bool operator>=(const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs)
+    {
+        return (!(rhs < lhs));
+    }
+    
+    // swap:
+    template <class T, class Alloc>  void swap (vector<T,Alloc>& x, vector<T,Alloc>& y)
+    {
+        x.swap(y);
+    }
 }

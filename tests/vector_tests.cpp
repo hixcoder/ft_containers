@@ -6,45 +6,75 @@
 /*   By: hboumahd <hboumahd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:29:28 by hboumahd          #+#    #+#             */
-/*   Updated: 2023/02/10 16:30:46 by hboumahd         ###   ########.fr       */
+/*   Updated: 2023/02/11 16:53:41 by hboumahd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tests.hpp"
 #include <vector>
 
+void test1_construction(int is_std)
+{
+  if (is_std)
+  {
+    std::cout << "std:\n";
+    std::cout << "------\n";
+    
+    std::vector<int> v1;
+    std::vector<int> v2(7, 13);
+    
+    v1 = v2;
+    std::cout << "v1: ";
+    for (size_t i = 0; i < v1.size(); i++)
+      std::cout <<  v1[i] << " ";
+    std::cout << "\n";
+    
+    std::vector<int>::iterator itf = v2.begin();
+    std::vector<int>::iterator itl = v2.begin() + 5;
+    std::vector<int> v3(itf, itl);
+    std::cout << "v3: ";
+    for (size_t i = 0; i < v3.size(); i++)
+      std::cout <<  v3[i] << " ";
+    std::cout << "\n";
+
+    std::vector<int> v4(v3);
+    std::cout << "v4: ";
+    for (size_t i = 0; i < v4.size(); i++)
+      std::cout <<  v4[i] << " ";
+    std::cout << "\n";
+  }
+  else
+  {
+    std::cout << "std:\n";
+    std::cout << "------\n";
+    
+    ft::vector<int> v1;
+    ft::vector<int> v2(7, 13);
+    
+    // v1 = v2;
+    // std::cout << "v1: ";
+    // for (size_t i = 0; i < v1.size(); i++)
+    //   std::cout <<  v1[i] << " ";
+    // std::cout << "\n";
+    
+    // ft::vector<int>::iterator itf = v2.begin();
+    // ft::vector<int>::iterator itl = v2.begin() + 5;
+    // ft::vector<int> v3(itf, itl);
+    // std::cout << "v3: ";
+    // for (size_t i = 0; i < v3.size(); i++)
+    //   std::cout <<  v3[i] << " ";
+    // std::cout << "\n";
+
+    // ft::vector<int> v4(v3);
+    // std::cout << "v4: ";
+    // for (size_t i = 0; i < v4.size(); i++)
+    //   std::cout <<  v4[i] << " ";
+    // std::cout << "\n";
+  }
+}
+
 void vectorTest()
 {
-  std::vector<int> v1;
-  
-  v1.push_back(5888);
-  v1.push_back(5888);
-  v1.push_back(58880);
-  v1.push_back(58881);
-  v1.push_back(58881);
-  v1.push_back(58881);
-  v1.push_back(58881);
-  v1.push_back(58881);
-  v1.push_back(58881);
-
-  std::vector<int> v;
-  
-  v.push_back(50);
-  v.push_back(50);
-  v.push_back(550);
-  v.push_back(501);
-  
-  std::cout << "capacity - size: " << v.capacity() << " - " << v.size()<< "\n";
-  v.reserve(6);
-  std::cout << "capacity - size: " << v.capacity() << " - " << v.size() << "\n";
-  v = v1;
-  std::cout << "capacity2 - size: " << v.capacity()  << " - " << v.size()<< "\n";
-  for (size_t i = 0; i < v.size(); i++)
-    std::cout << "v["<< i << "]= "<< v[i] << "\n"; 
-  
-  std::cout << "\n";
-  v.assign (7,100);           
-  for (size_t i = 0; i < v.size(); i++)
-    std::cout << "v["<< i << "]= "<< v[i] << "\n"; 
-  
+  test1_construction(1);
+  // test1_construction(0);
 }

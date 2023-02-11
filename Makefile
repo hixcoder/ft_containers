@@ -6,7 +6,7 @@
 #    By: hboumahd <hboumahd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/22 17:15:58 by hboumahd          #+#    #+#              #
-#    Updated: 2023/02/06 13:19:12 by hboumahd         ###   ########.fr        #
+#    Updated: 2023/02/11 15:25:25 by hboumahd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ SRCS =	main.cpp tests/algorithm_tests.cpp tests/stack_tests.cpp tests/vector_tes
 
 SRCOBJ = ${SRCS:.cpp=.o}
 
-Include = tests/tests.hpp utiles/algorithm.hpp  utiles/iterators.hpp
+Include = tests/tests.hpp utiles/algorithm.hpp  utiles/iterators.hpp containers/stack.hpp containers/vector.hpp
 
 # -g for the debugger
 %.o:%.cpp ${Include}
