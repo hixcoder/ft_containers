@@ -6,7 +6,7 @@
 /*   By: hboumahd <hboumahd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 09:29:18 by hboumahd          #+#    #+#             */
-/*   Updated: 2023/02/11 17:02:15 by hboumahd         ###   ########.fr       */
+/*   Updated: 2023/02/13 10:59:18 by hboumahd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,17 +54,18 @@ namespace ft
                 for (size_type i = 0; i < n; i++)
                     m_alloc.construct(&m_ptr[i], val);
             }
-            template <class  InputIterator> vector(InputIterator first, InputIterator last, const allocator_type& alloc = allocator_type())
+            template <class  InputIterator> 
+            vector(InputIterator first, InputIterator last, const allocator_type& alloc = allocator_type())
             {
                 size_type n = distance(first,last);
                 m_size = n;
                 m_capacity = n;
                 m_alloc = alloc;
                 m_ptr = m_alloc.allocate(n);
-                int i = 0;
+                size_type i = 0;
                 for (InputIterator it = first; it != last; it++)
                 {
-                    m_alloc.construct(&m_ptr[i], *it);
+                    m_alloc.construct(m_ptr + i, *it);
                     i++;
                 }
             }

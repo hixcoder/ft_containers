@@ -6,7 +6,7 @@
 /*   By: hboumahd <hboumahd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:29:28 by hboumahd          #+#    #+#             */
-/*   Updated: 2023/02/11 16:53:41 by hboumahd         ###   ########.fr       */
+/*   Updated: 2023/02/13 11:01:57 by hboumahd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ void test1_construction(int is_std)
 
 void vectorTest()
 {
-  test1_construction(1);
-  // test1_construction(0);
+  int is_std = 1;
+  test1_construction(is_std);
+  test1_construction(0);
 }
