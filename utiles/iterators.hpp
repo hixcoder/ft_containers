@@ -6,7 +6,7 @@
 /*   By: hboumahd <hboumahd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 10:49:57 by hboumahd          #+#    #+#             */
-/*   Updated: 2023/02/06 13:18:31 by hboumahd         ###   ########.fr       */
+/*   Updated: 2023/02/14 11:00:07 by hboumahd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,34 +158,34 @@ namespace ft
     };
 
     template <class _Iter1, class _Iter2>
-	bool operator==(const reverse_iterator<_Iter1>& __left, const reverse_iterator<_Iter2>& __right) 
+	bool operator==(const reverse_iterator<_Iter1>& _left, const reverse_iterator<_Iter2>& _right) 
     {
-		return (__left.base() == __right.base());
+		return (_left.base() == _right.base());
 	}
 	template <class _Iter1, class _Iter2>
-	bool operator!=(const reverse_iterator<_Iter1>& __left, const reverse_iterator<_Iter2>& __right) 
+	bool operator!=(const reverse_iterator<_Iter1>& _left, const reverse_iterator<_Iter2>& _right) 
     {
-		return (__left.base() != __right.base());
+		return (_left.base() != _right.base());
 	}
 	template <class _Iter1, class _Iter2>
-	bool operator<=(const reverse_iterator<_Iter1>& __left, const reverse_iterator<_Iter2>& __right) 
+	bool operator<=(const reverse_iterator<_Iter1>& _left, const reverse_iterator<_Iter2>& _right) 
     {
-		return (__left.base() >= __right.base());
+		return (_left.base() >= _right.base());
 	}
 	template <class _Iter1, class _Iter2>
-	bool operator>=(const reverse_iterator<_Iter1>& __left, const reverse_iterator<_Iter2>& __right) 
+	bool operator>=(const reverse_iterator<_Iter1>& _left, const reverse_iterator<_Iter2>& _right) 
     {
-		return (__left.base() <= __right.base());
+		return (_left.base() <= _right.base());
 	}
 	template <class _Iter1, class _Iter2>
-	bool operator< (const reverse_iterator<_Iter1>& __left, const reverse_iterator<_Iter2>& __right) 
+	bool operator< (const reverse_iterator<_Iter1>& _left, const reverse_iterator<_Iter2>& _right) 
     {
-		return (__left.base() > __right.base());
+		return (_left.base() > _right.base());
 	}
 	template <class _Iter1, class _Iter2>
-	bool operator> (const reverse_iterator<_Iter1>& __left, const reverse_iterator<_Iter2>& __right) 
+	bool operator> (const reverse_iterator<_Iter1>& _left, const reverse_iterator<_Iter2>& _right) 
     {
-		return (__left.base() < __right.base());
+		return (_left.base() < _right.base());
 	}
 
 	template <class Iterator>
@@ -195,9 +195,9 @@ namespace ft
 	}
 
 	template <class _Iter1, class _Iter2>
-	typename reverse_iterator<_Iter1>::difference_type operator-(const reverse_iterator<_Iter1>& __left, const reverse_iterator<_Iter2>& __right) 
+	typename reverse_iterator<_Iter1>::difference_type operator-(const reverse_iterator<_Iter1>& _left, const reverse_iterator<_Iter2>& _right) 
     {
-		return (__right.base() - __left.base());
+		return (_right.base() - _left.base());
 	}
 
 
@@ -205,117 +205,117 @@ namespace ft
         Start random_access_iterator class
     =======================================*/ 
     template <class T>
-        class random_access_iterator {
+        class random_access_iterator : public iterator<random_access_iterator_tag, T>{
         public:
-            typedef typename iterator_traits<T>::iterator_category      iterator_category;
-            typedef typename iterator_traits<T>::value_type             value_type;
-            typedef typename iterator_traits<T>::difference_type        difference_type;
-            typedef typename iterator_traits<T>::pointer                pointer;
-            typedef typename iterator_traits<T>::reference              reference;
+            typedef typename iterator<random_access_iterator_tag, T>::iterator_category      iterator_category;
+            typedef typename iterator<random_access_iterator_tag, T>::value_type             value_type;
+            typedef typename iterator<random_access_iterator_tag, T>::difference_type        difference_type;
+            typedef typename iterator<random_access_iterator_tag, T>::pointer                pointer;
+            typedef typename iterator<random_access_iterator_tag, T>::reference              reference;
         protected:
-            pointer __p;
+            pointer _p;
         public:
             // class constructors
-            random_access_iterator(): __p() {}
-            random_access_iterator(pointer ptr): __p(ptr) {}
-            random_access_iterator(const random_access_iterator<T>& other): __p(other.__p) {}
+            random_access_iterator(): _p() {}
+            random_access_iterator(pointer ptr): _p(ptr) {}
+            random_access_iterator(const random_access_iterator<T>& other): _p(other._p) {}
             virtual ~random_access_iterator() {}
        
             template <class Iter1> 
             random_access_iterator& operator=(const random_access_iterator<Iter1>& other)
             {
-                this->__p = other.base();
+                this->_p = other.base();
                 return *this;
             }
 
             // class functions
             pointer base(void) const {
-                return (__p);
+                return (_p);
             }
 
             reference operator* (void)const {
-                return (*__p);
+                return (*_p);
                 }
             pointer   operator->(void)const {
                 return (&(operator*()));
             }
             reference operator[](difference_type n)const {
-                return (__p[n]);
+                return (_p[n]);
             }
 
             random_access_iterator operator+(difference_type n)const {
-                return (__p + n);
+                return (_p + n);
             }
             random_access_iterator operator-(difference_type n)const {
-                return (__p - n);
+                return (_p - n);
             }
 
             random_access_iterator& operator++(void) {
-                ++__p;
+                ++_p;
                 return (*this);
             }
             random_access_iterator operator++(int) {
                 random_access_iterator tmp(*this);
-                __p++;
+                _p++;
                 return (tmp);
             }
             random_access_iterator& operator--(void) {
-                --__p;
+                --_p;
                 return (*this);
             }
             random_access_iterator operator--(int) {
                 random_access_iterator tmp(*this);
-                __p--;
+                _p--;
                 return (tmp);
             }
 
             random_access_iterator& operator+=(difference_type n) {
-                __p += n;
+                _p += n;
                 return (*this);
             }
             random_access_iterator& operator-=(difference_type n) {
-                __p -= n;
+                _p -= n;
                 return (*this);
             }
         };
 
         template <typename _T1, typename _T2>
-        bool operator==(const random_access_iterator<_T1>& __left, const random_access_iterator<_T2>& __right) 
+        bool operator==(const random_access_iterator<_T1>& _left, const random_access_iterator<_T2>& _right) 
         {
-            return (__left.base() == __right.base());
+            return (_left.base() == _right.base());
         }
         template <typename _T1, typename _T2>
-        bool operator!=(const random_access_iterator<_T1>& __left, const random_access_iterator<_T2>& __right) 
+        bool operator!=(const random_access_iterator<_T1>& _left, const random_access_iterator<_T2>& _right) 
         {
-            return (__left.base() != __right.base());
+            return (_left.base() != _right.base());
         }
         template <typename _T1, typename _T2>
-        bool operator<=(const random_access_iterator<_T1>& __left, const random_access_iterator<_T2>& __right) 
+        bool operator<=(const random_access_iterator<_T1>& _left, const random_access_iterator<_T2>& _right) 
         {
-            return (__left.base() <= __right.base());
+            return (_left.base() <= _right.base());
         }
         template <typename _T1, typename _T2>
-        bool operator>=(const random_access_iterator<_T1>& __left, const random_access_iterator<_T2>& __right) 
+        bool operator>=(const random_access_iterator<_T1>& _left, const random_access_iterator<_T2>& _right) 
         {
-            return (__left.base() >= __right.base());
+            return (_left.base() >= _right.base());
         }
         template <typename _T1, typename _T2>
-        bool operator< (const random_access_iterator<_T1>& __left, const random_access_iterator<_T2>& __right) 
+        bool operator< (const random_access_iterator<_T1>& _left, const random_access_iterator<_T2>& _right) 
         {
-            return (__left.base() < __right.base());
+            return (_left.base() < _right.base());
         }
         template <typename _T1, typename _T2>
-        bool operator> (const random_access_iterator<_T1>& __left, const random_access_iterator<_T2>& __right) 
+        bool operator> (const random_access_iterator<_T1>& _left, const random_access_iterator<_T2>& _right) 
         {
-            return (__left.base() > __right.base());
+            return (_left.base() > _right.base());
         }
         template <typename _T1>
         random_access_iterator<_T1> operator+(typename random_access_iterator<_T1>::difference_type n, const random_access_iterator<_T1>& rand_it) {
             return (rand_it + n);
         }
         template <typename _T1, typename _T2>
-        typename random_access_iterator<_T1>::difference_type operator-(const random_access_iterator<_T1>& __left, const random_access_iterator<_T2>& __right) {
-            return (__left.base() - __right.base());
+        typename random_access_iterator<_T1>::difference_type operator-(const random_access_iterator<_T1>& _left, const random_access_iterator<_T2>& _right) {
+            return (_left.base() - _right.base());
         }
 
 }

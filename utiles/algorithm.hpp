@@ -6,7 +6,7 @@
 /*   By: hboumahd <hboumahd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 10:36:22 by hboumahd          #+#    #+#             */
-/*   Updated: 2023/02/11 17:01:58 by hboumahd         ###   ########.fr       */
+/*   Updated: 2023/02/14 10:05:28 by hboumahd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,17 +194,13 @@ namespace ft
 //  ==> std::enable_if
 namespace ft
 {
-    template<bool Cond, class T = void> 
-    struct enable_if {};
-    
-    template<class T> 
-    struct enable_if<true, T> 
-    {
-        typedef T type;
-    };
-
+    template<bool Cond, class T = void> struct enable_if {};
+    template<class T> struct enable_if<true, T> { typedef T type; };
+}
     // **************| other functions|*******************
 
+namespace ft
+{
     //  ==> std::distance
     template<class InputIterator>     
     std::ptrdiff_t distance(InputIterator first, InputIterator last)

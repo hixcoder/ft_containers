@@ -6,7 +6,7 @@
 /*   By: hboumahd <hboumahd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 09:29:18 by hboumahd          #+#    #+#             */
-/*   Updated: 2023/02/13 10:59:18 by hboumahd         ###   ########.fr       */
+/*   Updated: 2023/02/14 10:29:09 by hboumahd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,9 @@ namespace ft
                 for (size_type i = 0; i < n; i++)
                     m_alloc.construct(&m_ptr[i], val);
             }
+             
             template <class  InputIterator> 
-            vector(InputIterator first, InputIterator last, const allocator_type& alloc = allocator_type())
+            vector(InputIterator first, InputIterator last, const allocator_type& alloc = allocator_type(), typename enable_if<!is_integral<InputIterator>::value, InputIterator>::type* = 0)
             {
                 size_type n = distance(first,last);
                 m_size = n;
@@ -69,6 +70,7 @@ namespace ft
                     i++;
                 }
             }
+            
             vector(const vector& x)
             {
                 *this = x;
@@ -79,17 +81,18 @@ namespace ft
                 if (m_capacity > 0)
                     m_alloc.deallocate(m_ptr, m_capacity);
             };
-            vector& operator=(const vector& x)
+            vector& operator=(const vector& other)
             {
-                if (this == &x)
+                if (this == &other)
                     return *this;
-                m_alloc = x.m_alloc;
-                m_capacity = x.m_capacity;
-                m_size = x.m_size;
-                m_alloc.deallocate(m_ptr);
+                if (m_ptr)
+                    m_alloc.deallocate(m_ptr, m_capacity);
+                m_alloc = other.m_alloc;
+                m_capacity = other.m_capacity;
+                m_size = other.m_size;
                 m_ptr = m_alloc.allocate(m_capacity);
                 for (size_type i = 0; i < m_size; i++)
-                    m_alloc.construct(&m_ptr[i], x.m_ptr[i]);
+                    m_alloc.construct(&m_ptr[i], other.m_ptr[i]);
                 return *this;
             }
 
