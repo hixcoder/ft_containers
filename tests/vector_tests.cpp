@@ -6,7 +6,7 @@
 /*   By: hboumahd <hboumahd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:29:28 by hboumahd          #+#    #+#             */
-/*   Updated: 2023/02/15 11:45:10 by hboumahd         ###   ########.fr       */
+/*   Updated: 2023/02/15 13:31:57 by hboumahd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,69 @@ void test2_iterators(int is_std)
     std::cout << '\n';
     
     std::vector<int> v1;
-    std::cout << "\ntest1: ok\n";
+    std::cout << "\ntest2: ok\n";
+    std::cout << "-------------------\n";
+
+  }
+}
+
+void test3_capacity(int is_std)
+{
+  if (is_std)
+  {
+    std::cout << "std: capacity\n";
+    std::cout << "-------------------\n";
+    std::vector<int> v(9, 100);
+      
+    std::cout << "max_size: " << v.max_size() << "\n";
+    std::cout << "size1: " << v.size() << "\n";
+    std::cout << "capacity1: " << v.capacity() << "\n";
+    v.reserve(15);
+    std::cout << "capacity2: " << v.capacity() << "\n";
+    v.resize(3);
+    std::cout << "size2: " << v.size() << "\n";
+    std::cout << "empty1: " << v.empty() << "\n";
+    v.clear();
+    std::cout << "empty2: " << v.empty() << "\n";
+    
+    std::cout << "-------------------\n\n";
+  }
+  else
+  {
+    std::cout << "ft: capacity\n";
+    std::cout << "-------------------\n";
+    ft::vector<int> v(9, 100);
+      
+    std::cout << "max_size: " << v.max_size() << "\n";
+    std::cout << "size1: " << v.size() << "\n";
+    std::cout << "capacity1: " << v.capacity() << "\n";
+    v.reserve(15);
+    std::cout << "capacity2: " << v.capacity() << "\n";
+    v.resize(3);
+    std::cout << "size2: " << v.size() << "\n";
+    std::cout << "empty1: " << v.empty() << "\n";
+    v.clear();
+    std::cout << "empty2: " << v.empty() << "\n";
+    
+    std::cout << "\ntest3: ok\n";
+    std::cout << "-------------------\n";
+
+  }
+}
+
+void test4_elementaccess(int is_std)
+{
+  if (is_std)
+  {
+    std::cout << "std: capacity\n";
+    std::cout << "-------------------\n";
+    std::vector<int> v(9, 100);
+      
+  }
+  else
+  {
+   
+    std::cout << "\ntest3: ok\n";
     std::cout << "-------------------\n";
 
   }
@@ -127,7 +189,9 @@ void test2_iterators(int is_std)
 
 void vectorTest()
 {
-  int is_std = 0;
+  int is_std = 1;
   // test1_construction(is_std);
-  test2_iterators(is_std);
+  // test2_iterators(is_std);
+  // test3_capacity(is_std);
+  test4_elementaccess(is_std);
 }

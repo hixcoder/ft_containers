@@ -6,7 +6,7 @@
 /*   By: hboumahd <hboumahd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 09:29:18 by hboumahd          #+#    #+#             */
-/*   Updated: 2023/02/15 11:52:59 by hboumahd         ###   ########.fr       */
+/*   Updated: 2023/02/15 13:25:01 by hboumahd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ namespace ft
                 m_size = n;
             }
             size_type capacity() const {return m_capacity;}
-            bool empty() const {return (m_ptr) ? true: false;}
+            bool empty() const {return (m_size == 0) ? true: false;}
             void reserve (size_type n)
             {
                 if (n > this->max_size())
