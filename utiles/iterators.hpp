@@ -6,7 +6,7 @@
 /*   By: hboumahd <hboumahd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 10:49:57 by hboumahd          #+#    #+#             */
-/*   Updated: 2023/02/14 11:00:07 by hboumahd         ###   ########.fr       */
+/*   Updated: 2023/02/15 11:25:50 by hboumahd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ namespace ft
         Start iterator_traits class
     ===============================*/ 
     template <class Iterator> 
-    class iterator_traits
+    struct iterator_traits
     {
         typedef typename Iterator::difference_type      difference_type;
         typedef typename Iterator::value_type           value_type;
@@ -47,7 +47,7 @@ namespace ft
         typedef typename Iterator::iterator_category    iterator_category;
     };
     template <class T> 
-    class iterator_traits<T*>
+    struct iterator_traits<T*>
     {
         typedef ptrdiff_t                   difference_type;
         typedef T                           value_type;
@@ -56,7 +56,7 @@ namespace ft
         typedef random_access_iterator_tag  iterator_category;
     };
     template <class T> 
-    class iterator_traits<const T*>
+    struct iterator_traits<const T*>
     {
         typedef ptrdiff_t                   difference_type;
         typedef T                           value_type;
@@ -207,11 +207,12 @@ namespace ft
     template <class T>
         class random_access_iterator : public iterator<random_access_iterator_tag, T>{
         public:
-            typedef typename iterator<random_access_iterator_tag, T>::iterator_category      iterator_category;
-            typedef typename iterator<random_access_iterator_tag, T>::value_type             value_type;
-            typedef typename iterator<random_access_iterator_tag, T>::difference_type        difference_type;
-            typedef typename iterator<random_access_iterator_tag, T>::pointer                pointer;
-            typedef typename iterator<random_access_iterator_tag, T>::reference              reference;
+            typedef T                                                                                    iterator_type;
+            typedef typename iterator<random_access_iterator_tag, iterator_type>::iterator_category      iterator_category;
+            typedef typename iterator<random_access_iterator_tag, iterator_type>::value_type             value_type;
+            typedef typename iterator<random_access_iterator_tag, iterator_type>::difference_type        difference_type;
+            typedef typename iterator<random_access_iterator_tag, iterator_type>::pointer                pointer;
+            typedef typename iterator<random_access_iterator_tag, iterator_type>::reference              reference;
         protected:
             pointer _p;
         public:

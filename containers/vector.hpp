@@ -6,7 +6,7 @@
 /*   By: hboumahd <hboumahd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 09:29:18 by hboumahd          #+#    #+#             */
-/*   Updated: 2023/02/14 10:29:09 by hboumahd         ###   ########.fr       */
+/*   Updated: 2023/02/15 11:52:59 by hboumahd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <string>
 #include <memory>
 #include "../utiles/iterators.hpp"
+#include "../utiles/algorithm.hpp"
 
 namespace ft
 {
@@ -99,8 +100,8 @@ namespace ft
             // iterators:
             iterator begin() {return iterator(m_ptr);}
             iterator end() {return iterator(m_ptr + m_size);}
-            reverse_iterator rbegin() {return end();}
-            reverse_iterator rend() {return begin();}
+            reverse_iterator rbegin() {return reverse_iterator(end());}
+            reverse_iterator rend() {return reverse_iterator(begin());}
 
             // capacity:
             size_type size() const {return m_size;}

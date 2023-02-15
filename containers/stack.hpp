@@ -6,7 +6,7 @@
 /*   By: hboumahd <hboumahd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:26:57 by hboumahd          #+#    #+#             */
-/*   Updated: 2023/01/26 09:27:35 by hboumahd         ###   ########.fr       */
+/*   Updated: 2023/02/15 11:36:32 by hboumahd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # include <string>
 # include <iostream>
 # include <vector>
-
+# include "vector.hpp"
 
 namespace ft
 {
