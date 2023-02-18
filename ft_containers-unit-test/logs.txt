@@ -1,9 +1,9 @@
 In file included from ../vector_tests/operator >=.cpp:2:
 In file included from ../vector_tests/__service.ipp:3:
-../vector_tests/../../../containers/vector.hpp:368:40: error: 'this' argument to member function 'begin' has type 'const vector<int, std::__1::allocator<int> >', but function is not marked const
+../vector_tests/../../../containers/vector.hpp:407:40: error: 'this' argument to member function 'begin' has type 'const vector<int, std::__1::allocator<int> >', but function is not marked const
         return(lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end()));
                                        ^~~
-../vector_tests/../../../containers/vector.hpp:380:23: note: in instantiation of function template specialization 'ft::operator<<int, std::__1::allocator<int> >' requested here
+../vector_tests/../../../containers/vector.hpp:419:23: note: in instantiation of function template specialization 'ft::operator<<int, std::__1::allocator<int> >' requested here
         return (!(rhs < lhs));
                       ^
 ../vector_tests/operator >=.cpp:23:31: note: in instantiation of function template specialization 'ft::operator>=<int, std::__1::allocator<int> >' requested here
@@ -12,10 +12,10 @@ In file included from ../vector_tests/__service.ipp:3:
 ../vector_tests/../../../containers/vector.hpp:101:22: note: 'begin' declared here
             iterator begin() {return iterator(m_ptr);}
                      ^
-../vector_tests/../../../containers/vector.hpp:368:40: error: 'this' argument to member function 'begin' has type 'const vector<std::__1::basic_string<char>, std::__1::allocator<std::__1::basic_string<char> > >', but function is not marked const
+../vector_tests/../../../containers/vector.hpp:407:40: error: 'this' argument to member function 'begin' has type 'const vector<std::__1::basic_string<char>, std::__1::allocator<std::__1::basic_string<char> > >', but function is not marked const
         return(lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end()));
                                        ^~~
-../vector_tests/../../../containers/vector.hpp:380:23: note: in instantiation of function template specialization 'ft::operator<<std::__1::basic_string<char>, std::__1::allocator<std::__1::basic_string<char> > >' requested here
+../vector_tests/../../../containers/vector.hpp:419:23: note: in instantiation of function template specialization 'ft::operator<<std::__1::basic_string<char>, std::__1::allocator<std::__1::basic_string<char> > >' requested here
         return (!(rhs < lhs));
                       ^
 ../vector_tests/operator >=.cpp:27:31: note: in instantiation of function template specialization 'ft::operator>=<std::__1::basic_string<char>, std::__1::allocator<std::__1::basic_string<char> > >' requested here
@@ -27,64 +27,3 @@ In file included from ../vector_tests/__service.ipp:3:
 2 errors generated.
     ^
 2 errors generated.
-ared here
-    _LIBCPP_INLINE_VISIBILITY void deallocate(pointer __p, size_type __n) _NOEXCEPT
-    ^
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__config:868:35: note: expanded from macro '_LIBCPP_INLINE_VISIBILITY'
-#define _LIBCPP_INLINE_VISIBILITY _LIBCPP_HIDE_FROM_ABI
-                                  ^
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__config:851:35: note: expanded from macro '_LIBCPP_HIDE_FROM_ABI'
-#    define _LIBCPP_HIDE_FROM_ABI _LIBCPP_HIDDEN _LIBCPP_INTERNAL_LINKAGE
-                                  ^
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__config:743:28: note: expanded from macro '_LIBCPP_HIDDEN'
-#    define _LIBCPP_HIDDEN __attribute__ ((__visibility__("hidden")))
-                           ^
-2 errors generated.
-ype-parameter-0-0>' against 'int *'
-        bool operator==(const random_access_iterator<_T1>& _left, const random_access_iterator<_T2>& _right) 
-             ^
-../vector_tests/../../../containers/vector.hpp:358:43: note: candidate template ignored: could not match 'vector<type-parameter-0-0, type-parameter-0-1>' against 'int *'
-    template <class T, class Alloc>  bool operator==(const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs)
-                                          ^
-../vector_tests/../../../containers/vector.hpp:270:41: error: too few arguments to function call, expected 2, have 1
-                m_alloc.deallocate(m_ptr);
-                ~~~~~~~~~~~~~~~~~~      ^
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/memory:1816:5: note: 'deallocate' declared here
-    _LIBCPP_INLINE_VISIBILITY void deallocate(pointer __p, size_type __n) _NOEXCEPT
-    ^
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__config:868:35: note: expanded from macro '_LIBCPP_INLINE_VISIBILITY'
-#define _LIBCPP_INLINE_VISIBILITY _LIBCPP_HIDE_FROM_ABI
-                                  ^
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__config:851:35: note: expanded from macro '_LIBCPP_HIDE_FROM_ABI'
-#    define _LIBCPP_HIDE_FROM_ABI _LIBCPP_HIDDEN _LIBCPP_INTERNAL_LINKAGE
-                                  ^
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__config:743:28: note: expanded from macro '_LIBCPP_HIDDEN'
-#    define _LIBCPP_HIDDEN __attribute__ ((__visibility__("hidden")))
-                           ^
-4 errors generated.
-                                                       ^
-../vector_tests/../../../containers/../utiles/iterators.hpp:161:7: note: candidate template ignored: could not match 'reverse_iterator<type-parameter-0-0>' against 'A *'
-        bool operator==(const reverse_iterator<_Iter1>& _left, const reverse_iterator<_Iter2>& _right) 
-             ^
-../vector_tests/../../../containers/../utiles/iterators.hpp:284:14: note: candidate template ignored: could not match 'random_access_iterator<type-parameter-0-0>' against 'A *'
-        bool operator==(const random_access_iterator<_T1>& _left, const random_access_iterator<_T2>& _right) 
-             ^
-../vector_tests/../../../containers/vector.hpp:358:43: note: candidate template ignored: could not match 'vector<type-parameter-0-0, type-parameter-0-1>' against 'A *'
-    template <class T, class Alloc>  bool operator==(const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs)
-                                          ^
-../vector_tests/../../../containers/vector.hpp:270:41: error: too few arguments to function call, expected 2, have 1
-                m_alloc.deallocate(m_ptr);
-                ~~~~~~~~~~~~~~~~~~      ^
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/memory:1816:5: note: 'deallocate' declared here
-    _LIBCPP_INLINE_VISIBILITY void deallocate(pointer __p, size_type __n) _NOEXCEPT
-    ^
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__config:868:35: note: expanded from macro '_LIBCPP_INLINE_VISIBILITY'
-#define _LIBCPP_INLINE_VISIBILITY _LIBCPP_HIDE_FROM_ABI
-                                  ^
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__config:851:35: note: expanded from macro '_LIBCPP_HIDE_FROM_ABI'
-#    define _LIBCPP_HIDE_FROM_ABI _LIBCPP_HIDDEN _LIBCPP_INTERNAL_LINKAGE
-                                  ^
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__config:743:28: note: expanded from macro '_LIBCPP_HIDDEN'
-#    define _LIBCPP_HIDDEN __attribute__ ((__visibility__("hidden")))
-                           ^
-5 errors generated.
