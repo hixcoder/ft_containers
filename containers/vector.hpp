@@ -6,7 +6,7 @@
 /*   By: hboumahd <hboumahd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 09:29:18 by hboumahd          #+#    #+#             */
-/*   Updated: 2023/02/18 16:28:59 by hboumahd         ###   ########.fr       */
+/*   Updated: 2023/02/19 15:43:17 by hboumahd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,22 +59,34 @@ namespace ft
             template <class  InputIterator> 
             vector(InputIterator first, InputIterator last, const allocator_type& alloc = allocator_type(), typename enable_if<!is_integral<InputIterator>::value, InputIterator>::type* = 0)
             {
-                size_type n = distance(first,last);
+                size_type n = ft::distance(first,last);
                 m_size = n;
                 m_capacity = n;
                 m_alloc = alloc;
                 m_ptr = m_alloc.allocate(n);
-                size_type i = 0;
+                size_type i = -1;
                 for (InputIterator it = first; it != last; it++)
-                {
-                    m_alloc.construct(m_ptr + i, *it);
-                    i++;
-                }
+                    m_alloc.construct(&m_ptr[++i], *it);
             }
             
             vector(const vector& x)
             {
-                *this = x;
+                m_size = x.m_size;
+                m_capacity = x.m_capacity;
+                m_alloc = x.m_alloc;
+                m_ptr = m_alloc.allocate(m_capacity);
+                for (size_type i = 0; i < m_size; i++)
+                    m_alloc.construct(&m_ptr[i], x.m_ptr[i]);
+            }
+            vector& operator=(const vector& other)
+            {
+                if (this != &other) 
+                {
+                    vector tmp(other);
+                    swap(tmp);
+                    tmp.clear();
+                }
+                return *this;
             }
             ~vector()
             {
@@ -82,24 +94,14 @@ namespace ft
                 if (m_capacity > 0)
                     m_alloc.deallocate(m_ptr, m_capacity);
             };
-            vector& operator=(const vector& other)
-            {
-                if (this == &other)
-                    return *this;
-                if (m_size > 0)
-                    m_alloc.deallocate(m_ptr, m_capacity);
-                m_alloc = other.m_alloc;
-                m_capacity = other.m_capacity;
-                m_size = other.m_size;
-                m_ptr = m_alloc.allocate(m_capacity);
-                for (size_type i = 0; i < m_size; i++)
-                    m_alloc.construct(&m_ptr[i], other.m_ptr[i]);
-                return *this;
-            }
 
             // iterators:
             iterator begin() {return iterator(m_ptr);}
+            const_iterator begin() const {return (const_iterator(m_ptr));}
+            
             iterator end() {return iterator(m_ptr + m_size);}
+            const_iterator end() const {return (const_iterator(m_ptr + m_size));}
+
             reverse_iterator rbegin() {return reverse_iterator(end());}
             reverse_iterator rend() {return reverse_iterator(begin());}
 
@@ -191,12 +193,6 @@ namespace ft
                 m_alloc.deallocate(m_ptr, old_capacity);
                 m_ptr = new_ptr;
                 m_size = n;
-
-                // this->clear();
-			    // while (first != last) {
-                //     push_back(*first);
-                //     ++first;
-			    // }
             }
             
             void assign (size_type n, const value_type& val)
@@ -252,13 +248,12 @@ namespace ft
             {
                 pointer new_ptr;
                 size_type k = 0;
-                size_type s_old = m_size;
                 int i = 0;
                 
                 m_size += n;
                 if (m_capacity < m_size)
-                    m_capacity += (m_size - m_capacity);
-                new_ptr = m_alloc.allocate(m_size);
+                    m_capacity = m_size;
+                new_ptr = m_alloc.allocate(m_capacity);
                 
                 for (iterator it = begin(); it != end(); it++)
                 {
@@ -274,7 +269,6 @@ namespace ft
                     i++;
                     k++;
                 }
-                m_alloc.deallocate(m_ptr, s_old);
                 m_ptr = new_ptr;
             }
             template <class InputIterator> void insert (iterator position, InputIterator first, InputIterator last, typename enable_if<!is_integral<InputIterator>::value>::type* = 0)
@@ -396,7 +390,7 @@ namespace ft
     // relational operators:
     template <class T, class Alloc>  bool operator==(const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs)
     {
-        return (lhs.size() == rhs.size() && equal(lhs.begin(), lhs.end(), rhs.begin()));
+        return (lhs.size() == rhs.size() && ft::equal(lhs.begin(), lhs.end(), rhs.begin()));
     }
     template <class T, class Alloc>  bool operator!=(const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs)
     {
@@ -404,7 +398,7 @@ namespace ft
     }
     template <class T, class Alloc>  bool operator<(const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs)
     {
-        return(lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end()));
+        return(ft::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end()));
     }
     template <class T, class Alloc>  bool operator>(const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs)
     {
@@ -416,7 +410,7 @@ namespace ft
     }
     template <class T, class Alloc>  bool operator>=(const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs)
     {
-        return (!(rhs < lhs));
+        return (!(lhs > rhs));
     }
     
     // swap:

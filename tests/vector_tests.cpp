@@ -6,7 +6,7 @@
 /*   By: hboumahd <hboumahd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:29:28 by hboumahd          #+#    #+#             */
-/*   Updated: 2023/02/18 15:35:17 by hboumahd         ###   ########.fr       */
+/*   Updated: 2023/02/19 12:25:10 by hboumahd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -258,51 +258,51 @@ void test5_modifiers(int is_std)
 {
   if (is_std)
   {
-    std::cout << "std: Element access\n";
-    std::cout << "-------------------\n";
+  //   std::cout << "std: Element access\n";
+  //   std::cout << "-------------------\n";
 
-    // test assign function -------------------------------------
-    std::cout << "\nassign function: \n";
-    std::vector<int> first;
-    std::vector<int> second;
-    std::vector<int> third;
+  //   // test assign function -------------------------------------
+  //   std::cout << "\nassign function: \n";
+  //   std::vector<int> first;
+  //   std::vector<int> second;
+  //   std::vector<int> third;
 
-    first.assign (7,100);             // 7 ints with a value of 100
+  //   first.assign (7,100);             // 7 ints with a value of 100
 
-    std::vector<int>::iterator it0;
-    it0=first.begin()+1;
+  //   std::vector<int>::iterator it0;
+  //   it0=first.begin()+1;
 
-    second.assign (it0,first.end()-1); // the 5 central values of first
+  //   second.assign (it0,first.end()-1); // the 5 central values of first
 
-    int myints[] = {1776,7,4};
-    third.assign (myints,myints+3);   // assigning from array.
+  //   int myints[] = {1776,7,4};
+  //   third.assign (myints,myints+3);   // assigning from array.
 
-    std::cout << "Size of first: " << int (first.size()) << '\n';
-    std::cout << "Size of second: " << int (second.size()) << '\n';
-    std::cout << "Size of third: " << int (third.size()) << '\n';
+  //   std::cout << "Size of first: " << int (first.size()) << '\n';
+  //   std::cout << "Size of second: " << int (second.size()) << '\n';
+  //   std::cout << "Size of third: " << int (third.size()) << '\n';
 
 
-    // test push_back -------------------------------------
-    std::cout << "\npush_back function: \n";
-    ft::vector<int> v;
-    v.push_back(45);
-    v.push_back(445);
-    v.push_back(34445);
-    v.push_back(4345);
-    v.push_back(5);
-    v.push_back(445);
-    v.push_back(3445);
-    std::cout << "v[i]   : ";
-    for (size_t i = 0; i < v.size(); i++)
-      std::cout << v[i] << " ";
-    std::cout << "\n";
+  //   // test push_back -------------------------------------
+  //   std::cout << "\npush_back function: \n";
+  //   ft::vector<int> v;
+  //   v.push_back(45);
+  //   v.push_back(445);
+  //   v.push_back(34445);
+  //   v.push_back(4345);
+  //   v.push_back(5);
+  //   v.push_back(445);
+  //   v.push_back(3445);
+  //   std::cout << "v[i]   : ";
+  //   for (size_t i = 0; i < v.size(); i++)
+  //     std::cout << v[i] << " ";
+  //   std::cout << "\n";
 
-    // test pop_back -------------------------------------
-    std::cout << "\npop_back function: \n";
-    for (size_t i = 0; i < 3; i++)
-      v.pop_back();
-    for (size_t i = 0; i < v.size(); i++)
-      std::cout << v[i] << " ";
+  //   // test pop_back -------------------------------------
+  //   std::cout << "\npop_back function: \n";
+  //   for (size_t i = 0; i < 3; i++)
+  //     v.pop_back();
+  //   for (size_t i = 0; i < v.size(); i++)
+  //     std::cout << v[i] << " ";
 
     // test insert -------------------------------------
     std::cout << "\ninsert function: \n";
@@ -315,14 +315,13 @@ void test5_modifiers(int is_std)
     myvector.insert (it,2,300);
     
     // "it" no longer valid, get a new one:
-    std::cout << "\nassign function: \n";
-    it = myvector.begin();
+    // it = myvector.begin();
     
-    std::vector<int> anothervector (2,400);
-    myvector.insert (it+2,anothervector.begin(),anothervector.end());
+    // std::vector<int> anothervector (2,400);
+    // myvector.insert (it+2,anothervector.begin(),anothervector.end());
     
-    int myarray [] = { 501,502,503 };
-    myvector.insert (myvector.begin(), myarray, myarray+3);
+    // int myarray [] = { 501,502,503 };
+    // myvector.insert (myvector.begin(), myarray, myarray+3);
     
     std::cout << "myvector contains:";
     for (it=myvector.begin(); it<myvector.end(); it++)
@@ -330,112 +329,112 @@ void test5_modifiers(int is_std)
     std::cout << '\n';
 
     
-    // test erase -------------------------------------
-    std::cout << "\nerase function: \n";
-     std::vector<int> v_erase;
+  //   // test erase -------------------------------------
+  //   std::cout << "\nerase function: \n";
+  //    std::vector<int> v_erase;
 
-    // set some values (from 1 to 10)
-    for (int i=1; i<=10; i++) v_erase.push_back(i);
+  //   // set some values (from 1 to 10)
+  //   for (int i=1; i<=10; i++) v_erase.push_back(i);
 
-    // erase the 6th element
-    v_erase.erase (v_erase.begin()+5);
+  //   // erase the 6th element
+  //   v_erase.erase (v_erase.begin()+5);
 
-    // erase the first 3 elements:
-    v_erase.erase (v_erase.begin(),v_erase.begin()+3);
+  //   // erase the first 3 elements:
+  //   v_erase.erase (v_erase.begin(),v_erase.begin()+3);
 
-    std::cout << "v_erase contains:";
-    for (unsigned i=0; i<v_erase.size(); ++i)
-      std::cout << ' ' << v_erase[i];
-    std::cout << '\n';
+  //   std::cout << "v_erase contains:";
+  //   for (unsigned i=0; i<v_erase.size(); ++i)
+  //     std::cout << ' ' << v_erase[i];
+  //   std::cout << '\n';
 
     
-    // test swap -------------------------------------
-    std::cout << "\nswap function: \n";
-    std::vector<int> foo (3,100);   // three ints with a value of 100
-    std::vector<int> bar (5,200);   // five ints with a value of 200
+  //   // test swap -------------------------------------
+  //   std::cout << "\nswap function: \n";
+  //   std::vector<int> foo (3,100);   // three ints with a value of 100
+  //   std::vector<int> bar (5,200);   // five ints with a value of 200
 
-    foo.swap(bar);
+  //   foo.swap(bar);
 
-    std::cout << "foo contains:";
-    for (unsigned i=0; i<foo.size(); i++)
-      std::cout << ' ' << foo[i];
-    std::cout << '\n';
+  //   std::cout << "foo contains:";
+  //   for (unsigned i=0; i<foo.size(); i++)
+  //     std::cout << ' ' << foo[i];
+  //   std::cout << '\n';
 
-    std::cout << "bar contains:";
-    for (unsigned i=0; i<bar.size(); i++)
-      std::cout << ' ' << bar[i];
-    std::cout << '\n';
+  //   std::cout << "bar contains:";
+  //   for (unsigned i=0; i<bar.size(); i++)
+  //     std::cout << ' ' << bar[i];
+  //   std::cout << '\n';
   
 
   
-    // test clear -------------------------------------
-    std::cout << "\nclear function: \n";
-    std::vector<int> v_clear;
-    v_clear.push_back (100);
-    v_clear.push_back (200);
-    v_clear.push_back (300);
+  //   // test clear -------------------------------------
+  //   std::cout << "\nclear function: \n";
+  //   std::vector<int> v_clear;
+  //   v_clear.push_back (100);
+  //   v_clear.push_back (200);
+  //   v_clear.push_back (300);
     
-    std::cout << "v_clear contains:";
-    for (unsigned i=0; i<v_clear.size(); i++)
-      std::cout << ' ' << v_clear[i];
-    std::cout << '\n';
+  //   std::cout << "v_clear contains:";
+  //   for (unsigned i=0; i<v_clear.size(); i++)
+  //     std::cout << ' ' << v_clear[i];
+  //   std::cout << '\n';
     
-    v_clear.clear();
-    v_clear.push_back (1101);
-    v_clear.push_back (2202);
+  //   v_clear.clear();
+  //   v_clear.push_back (1101);
+  //   v_clear.push_back (2202);
     
-    std::cout << "v_clear contains:";
-    for (unsigned i=0; i<v_clear.size(); i++)
-      std::cout << ' ' << v_clear[i];
-    std::cout << '\n';
+  //   std::cout << "v_clear contains:";
+  //   for (unsigned i=0; i<v_clear.size(); i++)
+  //     std::cout << ' ' << v_clear[i];
+  //   std::cout << '\n';
   }
   else
   {
-    std::cout << "\nft: Element access\n";
-    std::cout << "-------------------\n";
+  //   std::cout << "\nft: Element access\n";
+  //   std::cout << "-------------------\n";
 
     // test assign function -------------------------------------
-    std::cout << "\nassign function: \n";
-    ft::vector<int> first;
-    ft::vector<int> second;
-    ft::vector<int> third;
+    // std::cout << "\nassign function: \n";
+    // ft::vector<int> first;
+    // ft::vector<int> second;
+    // ft::vector<int> third;
 
-    first.assign (7,100);             // 7 ints with a value of 100
+    // first.assign (7,100);             // 7 ints with a value of 100
 
-    ft::vector<int>::iterator it0;
-    it0=first.begin() + 1;
+    // ft::vector<int>::iterator it0;
+    // it0=first.begin() + 1;
 
-    second.assign (it0,first.end() - 1); // the 5 central values of first
+    // second.assign (it0,first.end() - 1); // the 5 central values of first
 
-    int myints[] = {1776,7,4};
-    third.assign (myints,myints + 3);   // assigning from array.
+    // int myints[] = {1776,7,4};
+    // third.assign (myints,myints + 3);   // assigning from array.
 
-    std::cout << "Size of first: " << int (first.size()) << '\n';
-    std::cout << "Size of second: " << int (second.size()) << '\n';
-    std::cout << "Size of third: " << int (third.size()) << '\n';
+    // std::cout << "Size of first: " << int (first.size()) << '\n';
+    // std::cout << "Size of second: " << int (second.size()) << '\n';
+    // std::cout << "Size of third: " << int (third.size()) << '\n';
 
 
     // test push_back -------------------------------------
-    std::cout << "\npush_back function: \n";
-    ft::vector<int> v;
-    v.push_back(45);
-    v.push_back(445);
-    v.push_back(34445);
-    v.push_back(4345);
-    v.push_back(5);
-    v.push_back(445);
-    v.push_back(3445);
-    std::cout << "v[i]   : ";
-    for (size_t i = 0; i < v.size(); i++)
-      std::cout << v[i] << " ";
-    std::cout << "\n";
+    // std::cout << "\npush_back function: \n";
+    // ft::vector<int> v;
+    // v.push_back(45);
+    // v.push_back(445);
+    // v.push_back(34445);
+    // v.push_back(4345);
+    // v.push_back(5);
+    // v.push_back(445);
+    // v.push_back(3445);
+    // std::cout << "v[i]   : ";
+    // for (size_t i = 0; i < v.size(); i++)
+    //   std::cout << v[i] << " ";
+    // std::cout << "\n";
 
     // // test pop_back -------------------------------------
-    std::cout << "\npop_back function: \n";
-    for (size_t i = 0; i < 3; i++)
-      v.pop_back();
-    for (size_t i = 0; i < v.size(); i++)
-      std::cout << v[i] << " ";
+    // std::cout << "\npop_back function: \n";
+    // for (size_t i = 0; i < 3; i++)
+    //   v.pop_back();
+    // for (size_t i = 0; i < v.size(); i++)
+    //   std::cout << v[i] << " ";
 
     // // test insert -------------------------------------
     std::cout << "\ninsert function: \n";
@@ -448,14 +447,13 @@ void test5_modifiers(int is_std)
     myvector.insert (it,2,300);
     
     // "it" no longer valid, get a new one:
-    std::cout << "\nassign function: \n";
-    it = myvector.begin();
+    // it = myvector.begin();
     
-    ft::vector<int> anothervector (2,400);
-    myvector.insert (it+2,anothervector.begin(),anothervector.end());
+    // ft::vector<int> anothervector (2,400);
+    // myvector.insert (it+2,anothervector.begin(),anothervector.end());
     
-    int myarray [] = { 501,502,503 };
-    myvector.insert (myvector.begin(), myarray, myarray+3);
+    // int myarray [] = { 501,502,503 };
+    // myvector.insert (myvector.begin(), myarray, myarray+3);
     
     std::cout << "myvector contains:";
     for (it=myvector.begin(); it<myvector.end(); it++)
@@ -464,40 +462,40 @@ void test5_modifiers(int is_std)
 
     
     // test erase -------------------------------------
-    std::cout << "\nerase function: \n";
-     ft::vector<int> v_erase;
+    // std::cout << "\nerase function: \n";
+    //  ft::vector<int> v_erase;
 
-    // set some values (from 1 to 10)
-    for (int i=1; i<=10; i++) v_erase.push_back(i);
+    // // set some values (from 1 to 10)
+    // for (int i=1; i<=10; i++) v_erase.push_back(i);
 
-    // erase the 6th element
+    // // erase the 6th element
     // v_erase.erase (v_erase.begin()+5);
 
     // // erase the first 3 elements:
     // v_erase.erase (v_erase.begin(),v_erase.begin()+3);
 
-    std::cout << "v_erase contains:";
-    for (unsigned i=0; i<v_erase.size(); ++i)
-      std::cout << ' ' << v_erase[i];
-    std::cout << '\n';
+    // std::cout << "v_erase contains:";
+    // for (unsigned i=0; i<v_erase.size(); ++i)
+    //   std::cout << ' ' << v_erase[i];
+    // std::cout << '\n';
 
     
     // test swap -------------------------------------
-    std::cout << "\nswap function: \n";
-    ft::vector<int> foo (3,100);   // three ints with a value of 100
-    ft::vector<int> bar (5,200);   // five ints with a value of 200
+    // std::cout << "\nswap function: \n";
+    // ft::vector<int> foo (3,100);   // three ints with a value of 100
+    // ft::vector<int> bar (5,200);   // five ints with a value of 200
 
-    foo.swap(bar);
+    // foo.swap(bar);
 
-    std::cout << "foo contains:";
-    for (unsigned i=0; i<foo.size(); i++)
-      std::cout << ' ' << foo[i];
-    std::cout << '\n';
+    // std::cout << "foo contains:";
+    // for (unsigned i=0; i<foo.size(); i++)
+    //   std::cout << ' ' << foo[i];
+    // std::cout << '\n';
 
-    std::cout << "bar contains:";
-    for (unsigned i=0; i<bar.size(); i++)
-      std::cout << ' ' << bar[i];
-    std::cout << '\n';
+    // std::cout << "bar contains:";
+    // for (unsigned i=0; i<bar.size(); i++)
+    //   std::cout << ' ' << bar[i];
+    // std::cout << '\n';
   
 
   
