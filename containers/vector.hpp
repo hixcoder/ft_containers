@@ -6,7 +6,7 @@
 /*   By: hboumahd <hboumahd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 09:29:18 by hboumahd          #+#    #+#             */
-/*   Updated: 2023/02/19 15:43:17 by hboumahd         ###   ########.fr       */
+/*   Updated: 2023/02/20 16:35:13 by hboumahd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ namespace ft
             ~vector()
             {
                 clear();
-                if (m_capacity > 0)
+                if (m_capacity >= 0)
                     m_alloc.deallocate(m_ptr, m_capacity);
             };
 
@@ -240,9 +240,9 @@ namespace ft
             }
             iterator insert (iterator position, const value_type& val)
             {
-                size_type position_indx = distance(begin(), position);
+                size_type save = ft::distance(begin(), position);
 			    insert(position, 1, val);
-			    return (iterator(&this->m_ptr[position_indx]));
+			    return (iterator(&m_ptr[save]));
             }
             void insert (iterator position, size_type n, const value_type& val)
             {
@@ -252,55 +252,59 @@ namespace ft
                 
                 m_size += n;
                 if (m_capacity < m_size)
-                    m_capacity = m_size;
+                    m_capacity = (m_size > (m_capacity * 2)) ? m_size : (m_capacity * 2);
                 new_ptr = m_alloc.allocate(m_capacity);
                 
-                for (iterator it = begin(); it != end(); it++)
+                for (iterator it = begin(); it != position; it++)
                 {
-                    if (it == position)
-                    {
-                        for (size_type j = 0; j < n; j++)
-                        {
-                            m_alloc.construct(&new_ptr[i], val);
-                            i++;
-                        }
-                    }
                     m_alloc.construct(&new_ptr[i], m_ptr[k]);
                     i++;
                     k++;
                 }
+                for (size_type j = 0; j < n; j++)
+                {
+                    m_alloc.construct(&new_ptr[i], val);
+                    i++;
+                }
+                for (iterator it = position + n; it != end(); it++)
+                {
+                    m_alloc.construct(&new_ptr[i], m_ptr[k]);
+                    i++;
+                    k++;
+                }
+                m_alloc.deallocate(m_ptr, m_capacity - n);
                 m_ptr = new_ptr;
             }
             template <class InputIterator> void insert (iterator position, InputIterator first, InputIterator last, typename enable_if<!is_integral<InputIterator>::value>::type* = 0)
             {
                 pointer new_ptr;
-                size_type n;
-                size_type s_old;
-                int i = 0;
                 size_type k = 0;
+                int i = 0;
+                size_type n = ft::distance(first, last);
                 
-                n = distance(first, last);
-                s_old = m_capacity;
                 m_size += n;
                 if (m_capacity < m_size)
-                    m_capacity += (m_size - m_capacity);
+                    m_capacity = (m_size > (m_capacity * 2)) ? m_size : (m_capacity * 2);
                 new_ptr = m_alloc.allocate(m_capacity);
-
-                for (iterator it = begin(); it != end(); it++)
+                
+                for (iterator it = begin(); it != position; it++)
                 {
-                    if (it == position)
-                    {
-                        for (size_type j = 0; j < n; j++)
-                        {
-                            m_alloc.construct(&new_ptr[i], *(first + k));
-                            i++;
-                        }
-                    }
                     m_alloc.construct(&new_ptr[i], m_ptr[k]);
                     i++;
                     k++;
                 }
-                m_alloc.deallocate(m_ptr, s_old);
+                for (size_type j = 0; j < n;j++)
+                {
+                    m_alloc.construct(&new_ptr[i], *(first + j));
+                    i++;
+                }
+                for (iterator it = position + n; it != end() && m_size > n; it++)
+                {
+                    m_alloc.construct(&new_ptr[i], m_ptr[k]);
+                    i++;
+                    k++;
+                }
+                m_alloc.deallocate(m_ptr, m_capacity - n);
                 m_ptr = new_ptr;
             }
             // iterator erase (iterator position)

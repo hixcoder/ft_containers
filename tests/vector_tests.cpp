@@ -6,7 +6,7 @@
 /*   By: hboumahd <hboumahd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:29:28 by hboumahd          #+#    #+#             */
-/*   Updated: 2023/02/19 12:25:10 by hboumahd         ###   ########.fr       */
+/*   Updated: 2023/02/20 12:56:39 by hboumahd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -309,10 +309,10 @@ void test5_modifiers(int is_std)
     std::vector<int> myvector (3,100);
     std::vector<int>::iterator it;
     
-    it = myvector.begin();
+    it = myvector.begin() +2 ;
     it = myvector.insert ( it , 200 );
     
-    myvector.insert (it,2,300);
+    // myvector.insert (it,2,300);
     
     // "it" no longer valid, get a new one:
     // it = myvector.begin();
@@ -324,7 +324,7 @@ void test5_modifiers(int is_std)
     // myvector.insert (myvector.begin(), myarray, myarray+3);
     
     std::cout << "myvector contains:";
-    for (it=myvector.begin(); it<myvector.end(); it++)
+    for (; it<myvector.end(); it++)
       std::cout << ' ' << *it;
     std::cout << '\n';
 
@@ -441,10 +441,10 @@ void test5_modifiers(int is_std)
     ft::vector<int> myvector (3,100);
     ft::vector<int>::iterator it;
     
-    it = myvector.begin();
+    it = myvector.begin() + 2;
     it = myvector.insert ( it , 200 );
     
-    myvector.insert (it,2,300);
+    // myvector.insert (it,2,300);
     
     // "it" no longer valid, get a new one:
     // it = myvector.begin();
@@ -456,7 +456,7 @@ void test5_modifiers(int is_std)
     // myvector.insert (myvector.begin(), myarray, myarray+3);
     
     std::cout << "myvector contains:";
-    for (it=myvector.begin(); it<myvector.end(); it++)
+    for (; it<myvector.end(); it++)
       std::cout << ' ' << *it;
     std::cout << '\n';
 

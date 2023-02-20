@@ -5,15 +5,3 @@
     exit(run_vector_unit_test<int>("erase(range)", erase_test_2, erase_test_2));
                                                                  ^
 1 error generated.
-n(), tmp.end());
-               ^
-../vector_tests/insert(std iterators).cpp:40:75: note: in instantiation of function template specialization 'insert_std_test<int>' requested here
-        exit(run_vector_unit_test<int>("insert(std iterators)", insert_std_test, insert_std_test));
-                                                                                 ^
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/iterator:608:1: note: candidate function [with _InputIter = std::__1::__wrap_iter<int *>]
-distance(_InputIter __first, _InputIter __last)
-^
-../vector_tests/../../../containers/../utiles/algorithm.hpp:231:20: note: candidate function [with InputIterator = std::__1::__wrap_iter<int *>]
-    std::ptrdiff_t distance(InputIterator first, InputIterator last)
-                   ^
-1 error generated.
